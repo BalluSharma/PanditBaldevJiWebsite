@@ -1,0 +1,99 @@
+लॉगिन / साइन अप सिस्टम — सेटअप गाइड
+=======================================
+
+यह website अब एक पूरा Login + Sign Up + "My Account" dashboard सिस्टम के साथ
+आती है (account/ फोल्डर में)। यह काम करने के लिए आपको एक FREE Firebase
+प्रोजेक्ट बनाना होगा (5 मिनट का काम, कोई coding नहीं) और उसकी keys एक
+फाइल में paste करनी हैं। तब तक Login/Sign Up पेज एक friendly message
+दिखाएंगे, website टूटेगी नहीं।
+
+क्या-क्या बनाया गया है
+------------------------
+account/login.html             -> लॉगिन पेज
+account/signup.html            -> साइन अप पेज (Name, Phone, Email, Password)
+account/forgot-password.html   -> पासवर्ड भूल गए? (ईमेल पर reset link)
+account/dashboard.html         -> "My Account" — प्रोटेक्टेड पेज, बिना लॉगिन
+                                   सीधे नहीं खुलता, अपने आप login.html पर भेज देता है
+account/firebase-config.js     -> सिर्फ यही 1 फाइल आपको एडिट करनी है
+account/account.css, account.js-> डिज़ाइन व कोड (इसे बदलने की ज़रूरत नहीं)
+
+सेटअप — सिर्फ 1 बार करना है
+------------------------------
+1. https://console.firebase.google.com खोलें, Google account से लॉगिन करें
+   (वही जो Gmail/YouTube के लिए इस्तेमाल करते हैं)।
+2. "Add Project" पर क्लिक करें, नाम दें जैसे "pandit-baldev-sharma",
+   Continue > Continue > Create Project.
+3. बाईं तरफ "Build" में जाएं > "Authentication" > "Get Started"।
+   "Sign-in method" टैब में "Email/Password" को चुनकर Enable करें, Save करें।
+4. बाईं तरफ "Build" में जाएं > "Firestore Database" > "Create Database" >
+   "Start in production mode" चुनें > अपने नज़दीकी location (जैसे asia-south1)
+   चुनें > Enable।
+5. ऊपर बाईं तरफ प्रोजेक्ट नाम के पास ⚙️ (Settings) > "Project settings"।
+   नीचे "Your apps" में </> (Web) आइकॉन पर क्लिक करें। App nickname दें
+   (जैसे "website"), "Register app" दबाएं।
+6. अब स्क्रीन पर एक कोड दिखेगा जिसमें "firebaseConfig = { ... }" लिखा होगा।
+   इसमें से apiKey, authDomain, projectId, storageBucket,
+   messagingSenderId, appId — ये 6 values कॉपी करें।
+7. account/firebase-config.js फाइल खोलें, हर "PASTE_YOUR_..." की जगह
+   अपनी असली value डालें (quotes " " के अंदर ही रखें)। Save करें।
+8. Firestore Security Rules सेट करें ताकि हर व्यक्ति सिर्फ अपना डेटा देख
+   पाए — Firestore Database > "Rules" टैब में जाकर यह paste करें:
+
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       match /users/{userId} {
+         allow read, write: if request.auth != null && request.auth.uid == userId;
+       }
+     }
+   }
+
+   "Publish" दबाएं। (यह असली सिक्योरिटी है — भले ही कोई dashboard.html का
+   लिंक सीधे खोल ले, डेटा सिर्फ सही logged-in user को ही मिलेगा।)
+9. website को हमेशा की तरह upload करें (index.html, style.css, script.js,
+   assets, blog, account — सब फोल्डर साथ)। बस इतना ही — अब Login/Sign Up
+   काम करने लगेगा।
+
+जो चीज़ें पूरी तरह FREE हैं
+------------------------------
+✅ Email + Password से Sign Up / Login         — unlimited, हमेशा free
+✅ ईमेल पर verification link (signup के बाद)    — free (यह OTP जैसा ही काम करता है)
+✅ "Forgot Password" ईमेल लिंक                  — free
+✅ Firestore Database (यूज़र प्रोफाइल सेव करना)  — free tier बहुत बड़ा है,
+                                                    आपकी साइज़ की website के लिए पर्याप्त
+✅ "My Account" dashboard जहां अपनी बुकिंग दिखें — उसी Google Sheet से जुड़ा है,
+                                                    कोई अलग खर्चा नहीं
+
+मोबाइल नंबर पर SMS OTP — ज़रूरी जानकारी
+-------------------------------------------
+आपने पूछा था कि OTP मोबाइल नंबर पर भी जाए — यह तकनीकी रूप से संभव है,
+पर ईमानदारी से बता दूं:
+- Firebase में SMS OTP (Phone Authentication) चालू करने के लिए Google अब
+  "Blaze" (pay-as-you-go) plan की मांग करता है — कार्ड attach करना पड़ता है।
+- हर SMS का खर्चा बहुत छोटा होता है (लगभग ₹0.3–₹1 प्रति SMS, India में),
+  पर यह पूरी तरह FREE नहीं है।
+- इसकी जगह हमने Email Verification रखा है, जो बिल्कुल OTP जैसा ही भरोसेमंद
+  है और 100% FREE है — ज़्यादातर professional websites यही करती हैं।
+- अगर आगे चलकर आपको सच में मोबाइल SMS OTP चाहिए, तो बताइए — Blaze plan पर
+  जाकर इसे जोड़ा जा सकता है (खर्चा बहुत कम होगा, आपके यूज़र्स की संख्या के
+  हिसाब से शायद महीने के कुछ रुपये ही)।
+
+Backend भाषा (language) के बारे में आपका सवाल
+---------------------------------------------
+आपने पूछा था "backend में कौन सी language use करते हैं" — अच्छी खबर यह है
+कि इस सेटअप में आपको खुद कोई backend language (Node.js/PHP/Python वगैरह)
+चलाने या सीखने की ज़रूरत नहीं। Firebase खुद ही backend का काम करता है
+(Google के servers पर)। अगर भविष्य में कोई advanced custom logic चाहिए
+हो, तो Firebase "Cloud Functions" feature JavaScript (Node.js) में लिखा
+जाता है — पर अभी के इस सिस्टम के लिए इसकी ज़रूरत नहीं है।
+
+Security के बारे में
+----------------------
+- dashboard.html की फाइल भले ही publicly host होती है, पर बिना लॉगिन के
+  उसका डेटा नहीं दिखता — JS redirect कर देता है login.html पर।
+- असली सिक्योरिटी Firestore Rules (ऊपर step 8) से आती है — वहीं पर तय होता
+  है कि कौन किसका डेटा पढ़/लिख सकता है, सिर्फ पेज को छुपाने से नहीं।
+- पासवर्ड कभी भी plain text में कहीं save नहीं होता — Firebase इसे खुद
+  encrypted रखता है, हमारी Google Sheet में पासवर्ड कभी नहीं जाता।
+
+कुछ भी समझ ना आए या सेटअप में अटक जाएं तो बताइए।

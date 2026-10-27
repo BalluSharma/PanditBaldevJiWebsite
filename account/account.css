@@ -1,0 +1,101 @@
+/* ============================================================
+   ACCOUNT PAGES (login / signup / forgot password / dashboard)
+   extends ../style.css
+   ============================================================ */
+
+.auth-wrap{
+  min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;
+  padding:60px 20px;
+  background:
+    radial-gradient(900px 400px at 85% -10%, rgba(255,153,51,.14), transparent 60%),
+    linear-gradient(180deg,var(--cream-deep), var(--cream));
+}
+html.dark .auth-wrap{
+  background:
+    radial-gradient(900px 400px at 85% -10%, rgba(255,153,51,.1), transparent 60%),
+    linear-gradient(180deg,#2a1512,#241110);
+}
+.auth-card{
+  width:100%;max-width:440px;background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--radius);box-shadow:var(--shadow);padding:36px 34px;
+}
+.auth-card .icon-badge{
+  width:62px;height:62px;border-radius:50%;margin:0 auto 16px;
+  background:linear-gradient(135deg,var(--saffron),var(--gold));
+  display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:var(--shadow);
+}
+.auth-card h1{font-size:24px;text-align:center;margin-bottom:6px;}
+.auth-card .sub{font-size:13.5px;color:var(--text-soft);text-align:center;margin-bottom:26px;}
+.auth-card .form-group{margin-bottom:14px;}
+.auth-card label{font-size:13px;font-weight:600;margin-bottom:6px;display:block;}
+.auth-card input{
+  width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:10px;
+  font-size:14px;font-family:inherit;background:var(--bg-alt);color:var(--text);
+}
+.auth-card input:focus{outline:none;border-color:var(--saffron);}
+.pw-field{position:relative;}
+.pw-field .pw-toggle{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:none;border:0;cursor:pointer;font-size:15px;color:var(--text-soft);
+}
+.auth-card .btn{width:100%;justify-content:center;margin-top:6px;}
+.auth-msg{
+  font-size:13px;padding:11px 14px;border-radius:10px;margin-bottom:16px;display:none;
+}
+.auth-msg.show{display:block;}
+.auth-msg.error{background:#fde3e3;color:#9c1c1c;border:1px solid #f3b4b4;}
+.auth-msg.success{background:#e4f6e9;color:#17663a;border:1px solid #b7e5c6;}
+html.dark .auth-msg.error{background:#3a1616;color:#ffb4b4;border-color:#5c2424;}
+html.dark .auth-msg.success{background:#123621;color:#9fe6b9;border-color:#1f5c38;}
+.auth-switch{text-align:center;font-size:13.5px;color:var(--text-soft);margin-top:20px;}
+.auth-switch a{color:var(--maroon);font-weight:700;}
+html.dark .auth-switch a{color:var(--gold-light);}
+.auth-forgot{display:block;text-align:right;font-size:12.5px;margin:-8px 0 16px;color:var(--text-soft);}
+.auth-divider{display:flex;align-items:center;gap:10px;margin:22px 0;color:var(--text-soft);font-size:12px;}
+.auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--border);}
+.auth-note{
+  font-size:12px;color:var(--text-soft);text-align:center;margin-top:18px;line-height:1.5;
+}
+
+/* dashboard */
+.dash-wrap{padding:40px 0 80px;}
+.dash-head{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  margin-bottom:28px;
+}
+.dash-head .who{display:flex;align-items:center;gap:14px;}
+.dash-avatar{
+  width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--gold));
+  display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;
+}
+.dash-head h1{font-size:22px;margin-bottom:2px;}
+.dash-head .meta{font-size:13px;color:var(--text-soft);}
+.verify-pill{
+  display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
+  padding:4px 10px;border-radius:20px;margin-top:6px;
+}
+.verify-pill.yes{background:#e4f6e9;color:#17663a;}
+.verify-pill.no{background:#fff2e0;color:#8a5a00;}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px;}
+.dash-stat{
+  background:var(--bg-alt);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;
+}
+.dash-stat b{display:block;font-size:26px;color:var(--maroon-deep);}
+html.dark .dash-stat b{color:var(--gold-light);}
+.dash-stat span{font-size:12.5px;color:var(--text-soft);}
+.booking-row{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:16px 18px;border:1px solid var(--border);border-radius:14px;margin-bottom:12px;background:var(--bg);
+}
+.booking-row .bt{font-weight:700;font-size:14.5px;}
+.booking-row .bd{font-size:12.5px;color:var(--text-soft);margin-top:2px;}
+.booking-empty{
+  text-align:center;padding:40px 20px;color:var(--text-soft);font-size:14px;
+  border:1px dashed var(--border);border-radius:14px;
+}
+.loading-dot{opacity:.7;font-size:13.5px;color:var(--text-soft);}
+
+@media (max-width:640px){
+  .dash-grid{grid-template-columns:1fr;}
+  .auth-card{padding:28px 22px;}
+}

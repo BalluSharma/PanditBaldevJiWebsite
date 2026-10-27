@@ -1,0 +1,85 @@
+पंडित बलदेव शर्मा वेबसाइट - फाइलों की जानकारी
+=================================================
+
+इस ज़िप में ये चीज़ें हैं:
+
+1. index.html                    -> वेबसाइट का मुख्य पेज (यही खोलकर साइट दिखती है)
+2. style.css                     -> वेबसाइट का डिज़ाइन (रंग, फोंट, लेआउट)
+3. script.js                     -> बटन और फॉर्म का कोड
+                                    (Google Sheet का लिंक इसमें पहले से डला हुआ है)
+4. assets/images/                -> आपकी फोटो
+      pandit-baldev-sharma.jpg   = आपकी पूरी फोटो (हीरो और About दोनों में यही लगी है)
+      og-cover.jpg               = WhatsApp/Facebook पर लिंक शेयर करने पर दिखने वाली फोटो
+5. blog/                         -> ब्लॉग के 5 अलग पेज (नीचे "ब्लॉग पेज" सेक्शन देखें)
+      blog.css, blog.js          = इन पेजों का डिज़ाइन व कोड (website अपलोड करते वक़्त यह फोल्डर भी साथ ले जाएं)
+6. account/                      -> Login / Sign Up / My Account सिस्टम (नीचे देखें)
+7. FIREBASE-SETUP-GUIDE.txt      -> Login सिस्टम चालू करने की पूरी step-by-step गाइड
+8. google-apps-script-code.gs    -> ये वेबसाइट पर अपलोड नहीं करना है!
+                                    इसे Google Sheet > Extensions > Apps Script में पेस्ट करना है
+                                    (इस बार इसमें एक छोटा-सा update भी है — नीचे देखें)
+
+Login / Sign Up सिस्टम (नया)
+-------------------------------
+Nav bar में अब एक "👤 Login" लिंक है। इससे खुलता है:
+  - account/login.html            = लॉगिन
+  - account/signup.html           = साइन अप (Name, Phone, Email, Password)
+  - account/forgot-password.html  = पासवर्ड भूल गए
+  - account/dashboard.html        = "My Account" — बिना लॉगिन किए यह पेज
+                                     नहीं खुलता, अपने आप login पर भेज देता है
+यह अभी तक एक्टिव नहीं है — FIREBASE-SETUP-GUIDE.txt में बताए 9 steps एक बार
+करने होंगे (5 मिनट, बिल्कुल FREE)। तब तक Login/Sign Up पर क्लिक करने पर एक
+शांत message दिखेगा — वेबसाइट टूटेगी नहीं।
+
+google-apps-script-code.gs में क्या बदला
+-------------------------------------------
+doGet() में अब ?email=... दिया जाए तो सिर्फ उसी ईमेल की बुकिंग वापस आती हैं
+— यह "My Account" dashboard अपनी बुकिंग दिखाने के लिए इस्तेमाल करता है।
+बाकी पूरा फॉर्म/ईमेल वाला हिस्सा बिल्कुल वैसे का वैसा ही है, कुछ नहीं बदला।
+Apps Script में यह नया code paste करने के बाद "Deploy > Manage deployments
+> New version > Deploy" ज़रूर करें (नीचे अगला सेक्शन देखें)।
+
+ब्लॉग पेज (नए)
+---------------
+"Vedic Wisdom & Ritual Guides" सेक्शन के 5 कार्ड्स में से हर एक "Read More" अब अपने
+खुद के पूरे पेज पर खुलता है (पहले सब "#" यानी उसी पेज पर जाते थे):
+  - सत्यनारायण कथा  -> blog/satyanarayan-katha.html
+  - रुद्राभिषेक      -> blog/rudrabhishek.html
+  - गृह प्रवेश       -> blog/griha-pravesh.html
+  - नवग्रह पूजा      -> blog/navgrah-puja.html
+  - हिंदू संस्कार     -> blog/hindu-sanskars.html
+हर पेज पर जानकारी के साथ एक छोटा बुकिंग फॉर्म भी है, जो उसी Google Sheet और ईमेल पर
+जाएगा जैसे होमपेज का फॉर्म जाता है — कुछ अलग सेटअप नहीं करना।
+
+गूगल मैप
+---------
+Contact सेक्शन में अब आपका असली गूगल मैप (Dharamshala Lodhi Rajput Samaj, Agra) लगा हुआ है।
+
+सोशल लिंक (वेबसाइट में लग चुके हैं)
+------------------------------------
+Instagram : https://www.instagram.com/officialpanditbaldevsharma/
+Facebook  : https://www.facebook.com/officialpanditbaldevsharma/
+YouTube   : https://www.youtube.com/@officialpanditbaldevsharma
+ये सबसे ऊपर की पट्टी (हेडर), मोबाइल मेन्यू, वीडियो सेक्शन, संपर्क सेक्शन और फुटर में हैं।
+
+वेबसाइट अपलोड कैसे करें
+------------------------
+index.html, style.css, script.js, assets, blog और account — इन सभी फोल्डर/फाइलों को
+एक साथ, इसी तरह अपलोड करें (Netlify / Cloudflare Pages / GitHub Pages)।
+नाम या फोल्डर की जगह न बदलें।
+
+Google Sheet वाला कोड (.gs) बदलने के बाद
+-------------------------------------------
+Deploy > Manage deployments > पेंसिल आइकन > Version: New version > Deploy
+(वेबसाइट का URL वही रहेगा, कुछ बदलना नहीं है)
+
+जाँच
+----
+वेबसाइट चालू होने पर एक टेस्ट फॉर्म खुद भरें और देखें कि
+- Google Sheet में नई लाइन आई
+- officialpanditbaldevsharma@gmail.com पर ईमेल आया (पहली बार Spam भी देख लें)
+
+वीडियो सेक्शन
+-------------
+इसमें आपकी 3 YouTube वीडियो लगी हैं: सत्यनारायण भगवान कथा व पूजा, जन्माष्टमी पूजन, गणेश चतुर्थी पूजन।
+कार्ड पर क्लिक करने से वीडियो वहीं खुलकर चलती है। नई वीडियो जोड़नी हो तो मुझसे कहें।
+(वीडियो और उनकी थंबनेल फोटो चलने के लिए इंटरनेट चाहिए, ये बिना इंटरनेट के नहीं दिखेंगी।)

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account | Pandit Baldev Sharma</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%95%89%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="account.css">
+</head>
+<body>
+<div id="loader"><div class="loader-om">ॐ</div></div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">
+      <div class="brand-mark">ॐ</div>
+      <div class="brand-text"><div class="name">Pandit Baldev Sharma</div><div class="tag"><span class="lang-en">Karmakandi Pandit</span><span class="lang-hi">कर्मकांडी पंडित</span></div></div>
+    </a>
+    <div class="nav-actions">
+      <button class="mini-btn" id="langToggle" style="font-size:13px;">🌐 <span class="lang-en">हिंदी</span><span class="lang-hi">English</span></button>
+      <button class="icon-toggle" id="darkToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Shown only until we know whether a user is logged in -->
+<div id="dashGate" class="auth-wrap" style="min-height:50vh;">
+  <p class="loading-dot">🔄 <span class="lang-en">Checking your session…</span><span class="lang-hi">सत्र जाँचा जा रहा है…</span></p>
+</div>
+
+<!-- Real dashboard — only shown after auth check passes -->
+<div id="dashContent" style="display:none;">
+  <div class="container dash-wrap">
+    <div class="dash-head">
+      <div class="who">
+        <div class="dash-avatar" id="dashAvatar">?</div>
+        <div>
+          <h1 id="dashName">—</h1>
+          <div class="meta" id="dashEmail">—</div>
+          <span class="verify-pill" id="verifyPill"></span>
+          <button class="mini-btn" id="resendVerify" style="display:none;margin-left:8px;font-size:11.5px;"><span class="lang-en">Resend email</span><span class="lang-hi">फिर से भेजें</span></button>
+        </div>
+      </div>
+      <button class="btn btn-outline" id="logoutBtn">🚪 <span class="lang-en">Log Out</span><span class="lang-hi">लॉग आउट</span></button>
+    </div>
+
+    <div class="dash-grid">
+      <div class="dash-stat"><b id="bookingCount">…</b><span><span class="lang-en">Total Bookings</span><span class="lang-hi">कुल बुकिंग</span></span></div>
+      <div class="dash-stat"><b>🙏</b><span><span class="lang-en">Authentic Vedic Rituals</span><span class="lang-hi">प्रामाणिक वैदिक अनुष्ठान</span></span></div>
+      <div class="dash-stat"><b>📞</b><span><a href="tel:+917830285684" style="color:inherit;">+91 78302 85684</a></span></div>
+    </div>
+
+    <div class="section-head" style="text-align:left;margin-bottom:18px;">
+      <h2 style="font-size:20px;"><span class="lang-en">My Bookings</span><span class="lang-hi">मेरी बुकिंग</span></h2>
+      <p style="color:var(--text-soft);font-size:13.5px;"><span class="lang-en">Matched using the email you book with.</span><span class="lang-hi">जिस ईमेल से बुकिंग करते हैं, उसी से मिलाई जाती है।</span></p>
+    </div>
+    <div id="bookingList"><div class="loading-dot">🔄 <span class="lang-en">Loading your bookings…</span><span class="lang-hi">आपकी बुकिंग लोड हो रही है…</span></div></div>
+
+    <div class="article-cta-band" style="margin-top:30px;">
+      <h3><span class="lang-en">Book Another Puja</span><span class="lang-hi">एक और पूजा बुक करें</span></h3>
+      <p><span class="lang-en">Head back to the homepage to book your next ceremony.</span><span class="lang-hi">अगली पूजा बुक करने हेतु होमपेज पर जाएं।</span></p>
+      <div class="btn-row">
+        <a href="../index.html#booking" class="btn btn-gold"><span class="lang-en">Go to Booking</span><span class="lang-hi">बुकिंग पर जाएं</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="account.js"></script>
+<script>
+const htmlRoot = document.getElementById('htmlRoot');
+document.getElementById('langToggle').addEventListener('click', ()=>{
+  htmlRoot.setAttribute('lang', htmlRoot.getAttribute('lang')==='hi' ? 'en' : 'hi');
+});
+</script>
+</body>
+</html>

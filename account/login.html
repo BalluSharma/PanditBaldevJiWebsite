@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Pandit Baldev Sharma</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%95%89%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="account.css">
+</head>
+<body>
+<div id="loader"><div class="loader-om">ॐ</div></div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">
+      <div class="brand-mark">ॐ</div>
+      <div class="brand-text"><div class="name">Pandit Baldev Sharma</div><div class="tag"><span class="lang-en">Karmakandi Pandit</span><span class="lang-hi">कर्मकांडी पंडित</span></div></div>
+    </a>
+    <div class="nav-actions">
+      <button class="mini-btn" id="langToggle" style="font-size:13px;">🌐 <span class="lang-en">हिंदी</span><span class="lang-hi">English</span></button>
+      <button class="icon-toggle" id="darkToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </div>
+</nav>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="icon-badge">🔐</div>
+    <h1><span class="lang-en">Welcome Back</span><span class="lang-hi">वापसी पर स्वागत है</span></h1>
+    <p class="sub"><span class="lang-en">Log in to view and track your puja bookings.</span><span class="lang-hi">अपनी पूजा बुकिंग देखने हेतु लॉगिन करें।</span></p>
+
+    <div class="auth-msg" id="authMsg"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label><span class="lang-en">Email</span><span class="lang-hi">ईमेल</span></label>
+        <input type="email" name="email" required placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label><span class="lang-en">Password</span><span class="lang-hi">पासवर्ड</span></label>
+        <div class="pw-field">
+          <input type="password" name="password" id="loginPw" required placeholder="••••••••">
+          <button type="button" class="pw-toggle" data-target="loginPw">👁️</button>
+        </div>
+      </div>
+      <a href="forgot-password.html" class="auth-forgot"><span class="lang-en">Forgot password?</span><span class="lang-hi">पासवर्ड भूल गए?</span></a>
+      <button type="submit" class="btn btn-primary"><span class="lang-en">Log In</span><span class="lang-hi">लॉगिन करें</span></button>
+    </form>
+
+    <p class="auth-switch"><span class="lang-en">New here?</span><span class="lang-hi">नए हैं?</span> <a href="signup.html"><span class="lang-en">Create an account</span><span class="lang-hi">खाता बनाएं</span></a></p>
+    <p class="auth-note"><span class="lang-en">🔒 Your details are protected and used only for your puja bookings.</span><span class="lang-hi">🔒 आपका विवरण सुरक्षित है एवं केवल पूजा बुकिंग हेतु उपयोग होता है।</span></p>
+    <p class="auth-note"><a href="../index.html">← <span class="lang-en">Back to Home</span><span class="lang-hi">होम पर वापस जाएं</span></a></p>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="account.js"></script>
+<script>
+const htmlRoot = document.getElementById('htmlRoot');
+document.getElementById('langToggle').addEventListener('click', ()=>{
+  htmlRoot.setAttribute('lang', htmlRoot.getAttribute('lang')==='hi' ? 'en' : 'hi');
+});
+document.querySelectorAll('.pw-toggle').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    const inp = document.getElementById(b.dataset.target);
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+  });
+});
+</script>
+</body>
+</html>
